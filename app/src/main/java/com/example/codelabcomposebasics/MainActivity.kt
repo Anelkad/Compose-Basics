@@ -37,18 +37,22 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Greeting(name: String) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary
+        ),
+        modifier = Modifier.padding(vertical = 3.dp, horizontal = 4.dp)
+    ) {
+        CardContent(name)
+    }
+}
+@Composable
+private fun CardContent(name: String) {
     var expanded by rememberSaveable { mutableStateOf(false) }
 
-    Surface(
-        color = MaterialTheme.colorScheme.primary,//todo цвета разные в эмуляторе
-        modifier = Modifier.padding(
-            vertical = 3.dp,
-            horizontal = 6.dp
-        )
-    )
-    {
         Row(
             modifier = Modifier
                 .padding(24.dp)
@@ -91,7 +95,6 @@ private fun Greeting(name: String) {
                 )
             }
         }
-    }
 }
 
 @Composable
